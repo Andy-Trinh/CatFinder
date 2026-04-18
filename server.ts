@@ -9,6 +9,7 @@ const DATA_FILE = path.join(__dirname, "cats.json");
 
 async function startServer() {
   const app = express();
+  //changed for DigitalOcean to random asign PORT
   const PORT = process.env.PORT || 3000;
 
   // Middleware for parsing large JSON bodies (for base64 images)
