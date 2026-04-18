@@ -76,11 +76,12 @@ export default function GalleryPage() {
     }
   };
 
-  const filteredCats = cats.filter(cat => 
-    cat.species.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    cat.color.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    cat.other.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCats = cats.filter(cat => {
+    const speciesMatch = (cat.species || '').toLowerCase().includes(searchQuery.toLowerCase());
+    const colorMatch = (cat.color || '').toLowerCase().includes(searchQuery.toLowerCase());
+    const otherMatch = (cat.other || '').toLowerCase().includes(searchQuery.toLowerCase());
+    return speciesMatch || colorMatch || otherMatch;
+  });
 
   return (
     <div className="flex-1 lg:grid lg:grid-cols-[380px_1fr] gap-10 items-start">
@@ -198,7 +199,7 @@ export default function GalleryPage() {
             <AnimatePresence mode="popLayout">
               {filteredCats.map((cat) => (
                 <motion.div
-                  key={cat.id}
+                  key={cat.id || (cat as any)._id}
                   layout
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -230,7 +231,7 @@ export default function GalleryPage() {
                     </div>
                     <div className="mt-4 pt-4 border-t border-linen flex justify-between items-center">
                       <span className="text-[10px] text-stone uppercase tracking-tighter">
-                        Archive Ref: {cat.id.slice(-6)}
+                        Archive Ref: {(cat.id || (cat as any)._id)?.toString().slice(-6)}
                       </span>
                       <span className="text-[10px] text-stone uppercase italic">
                         {new Date(cat.createdAt).toLocaleDateString()}
