@@ -14,6 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = path.join(__dirname, "cats.json");
 const MONGODB_URI = process.env.MONGODB_URI;
 const USERS_FILE = path.join(__dirname, "users.json");
+const JWT_SECRET = process.env.JWT_SECRET || "fallback_super_secret_key_123";
 
 // MongoDB Schema
 const catSchema = new mongoose.Schema({
