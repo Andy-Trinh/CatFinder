@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 interface CatData {
   id: string;
-  catName: string, default: "Un-Named";
+  catName: string;
   species: string;
   color: string;
   fur: string;
@@ -129,6 +129,7 @@ export default function GalleryPage() {
   };
 
   const filteredCats = cats.filter(cat => {
+    const nameMatch = (cat.catName || '').toLowerCase().includes(searchQuery.toLowerCase());
     const speciesMatch = (cat.species || '').toLowerCase().includes(searchQuery.toLowerCase());
     const colorMatch = (cat.color || '').toLowerCase().includes(searchQuery.toLowerCase());
     const otherMatch = (cat.other || '').toLowerCase().includes(searchQuery.toLowerCase());
