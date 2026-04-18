@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Map, Trophy, ArrowRight, Shield, Globe, Users } from 'lucide-react';
+import { Trophy, ArrowRight, Shield, Globe, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import WorldMap from '../components/WorldMap';
 
 export default function LandingPage() {
   return (
@@ -50,21 +51,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          {/* Map Skeleton Placeholder */}
-          <div className="flex-1 bg-bone rounded-2xl border-2 border-dashed border-linen flex flex-col items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <Map size={200} />
-            </div>
-            <div className="relative z-10 text-center p-6">
-              <div className="w-12 h-12 bg-linen rounded-full mx-auto mb-4 animate-pulse" />
-              <p className="font-serif italic text-stone">Map module initializing...</p>
-              <div className="mt-4 flex gap-2 justify-center">
-                <div className="w-2 h-2 rounded-full bg-sage/40 animate-bounce" style={{ animationDelay: '0ms' }} />
-                <div className="w-2 h-2 rounded-full bg-sage/40 animate-bounce" style={{ animationDelay: '200ms' }} />
-                <div className="w-2 h-2 rounded-full bg-sage/40 animate-bounce" style={{ animationDelay: '400ms' }} />
-              </div>
-            </div>
-          </div>
+          <WorldMap />
         </motion.section>
 
         {/* Leaderboard Skeleton Section */}
